@@ -1,0 +1,154 @@
+body {
+    font-family: sans-serif;
+}
+
+#featuresWrapper {
+    position: relative;
+    overflow: scroll;
+}
+
+#features {
+    position: relative;
+    width: 950px;
+}
+
+#features-images {
+    float: left;
+    display: block;
+}
+
+#features-images img {
+    width: 100%;
+    height: auto;
+    max-width: 738px;
+    max-height: 529px;
+}
+
+#features ol {
+    float: left;
+    margin: 0;
+}
+
+#features .token {
+    position: absolute;
+    left: 0;
+    top: 0;
+    background-color: #DC082F;
+    width: 25px;
+    height: 25px;
+    line-height: 25px;
+    text-align: center;
+    border-radius: 12.5px;
+    color: #FFFFFF;
+    -webkit-box-shadow: 3px 3px 3px 0px rgba(0,0,0,0.5);
+    -moz-box-shadow: 3px 3px 3px 0px rgba(0,0,0,0.5);
+    box-shadow: 3px 3px 3px 0px rgba(0,0,0,0.5);
+}
+
+#ref1 .token {
+    left: 95px;
+    top: 435px;
+}
+
+#ref2 .token {
+    left: 180px;
+    top: 314px;
+}
+
+#ref2 .token .label {
+    top: auto !important;
+    bottom: -35px;
+}
+
+#ref3 .token {
+    left: 272px;
+    top: 436px;
+}
+
+#ref4 .token {
+    left: 389px;
+    top: 352px;
+}
+
+#ref5 .token {
+    left: 477px;
+    top: 175px;
+}
+
+#ref6 .token {
+    left: 691px;
+    top: 254px;
+}
+
+#ref6 .token .label {
+    left: auto !important;
+    right: 0;
+}
+
+#ref7 .token {
+    left: 233px;
+    top: 257px;
+}
+
+.description.visible,
+.label.visible {
+    display: block !important;
+}
+
+#features .description.left {
+    right: auto !important;
+    left: 0 !important;
+}
+
+#features .description.right {
+    right: 212 !important;
+    left: auto !important;
+}
+
+#features .description.center {
+
+}
+
+#features .description.top {
+    top: 0 !important;
+    bottom: auto !important;
+}
+
+#features .description.bottom {
+    top: auto !important;
+    bottom: 0 !important;
+}
+
+#features .description.middle {
+
+}
+
+#features .description {
+    position: absolute;
+    background-color: #003768;
+    color: #FFFFFF;
+    padding: 15px;
+    left: 0;
+    top: 0;
+    width: 500px;
+    display: none;
+    z-index: 1;
+    -webkit-box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.5);
+    -moz-box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.5);
+    box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.5);
+}
+
+#features .token .label {
+    position: absolute;
+    white-space: nowrap;
+    background-color: #003768;
+    padding: 5px;
+    height: 16px;
+    line-height: 16px;
+    left: 0;
+    top: -35px;
+    display: none;
+    -webkit-box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.5);
+    -moz-box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.5);
+    box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.5);
+}
