@@ -4,17 +4,28 @@ body {
 
 #featuresWrapper {
     position: relative;
-    overflow: scroll;
+    width: 100%;
 }
 
 #features {
     position: relative;
-    width: 950px;
+    max-width: 738px;
+}
+
+#overlays {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: auto;
+    height: auto;
 }
 
 #features-images {
-    float: left;
     display: block;
+    max-width: 738px;
+    width: 100%;
 }
 
 #features-images img {
@@ -46,13 +57,13 @@ body {
 }
 
 #ref1 .token {
-    left: 95px;
-    top: 435px;
+    left: 12.87%;
+    top: 82.23%;
 }
 
 #ref2 .token {
-    left: 180px;
-    top: 314px;
+    left: 24.39%;
+    top: 59.36%;
 }
 
 #ref2 .token .label {
@@ -61,23 +72,23 @@ body {
 }
 
 #ref3 .token {
-    left: 272px;
-    top: 436px;
+    left: 36.86%;
+    top: 82.42%;
 }
 
 #ref4 .token {
-    left: 389px;
-    top: 352px;
+    left: 52.71%;
+    top: 66.54%;
 }
 
 #ref5 .token {
-    left: 477px;
-    top: 175px;
+    left: 64.63%;
+    top: 33.08%;
 }
 
 #ref6 .token {
-    left: 691px;
-    top: 254px;
+    left: 93.63%;
+    top: 48.02%;
 }
 
 #ref6 .token .label {
@@ -86,8 +97,8 @@ body {
 }
 
 #ref7 .token {
-    left: 233px;
-    top: 257px;
+    left: 31.57%;
+    top: 48.58%;
 }
 
 .description.visible,
