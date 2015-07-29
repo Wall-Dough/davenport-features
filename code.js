@@ -1,11 +1,16 @@
 var currentFeature = null; // The currently visible feature (i.e. array corresponding to jQuery object)
 
 if ($("#features").length > 0) {
-    $("#features ol li").children("a").each(function () {
+    $("#overlays").children("a").each(function () {
         "use strict";
+
+        // Get ref from the ordered list
+        var refId = $(this)[0].getAttribute("id");
+        var listRef = $("#featuresWrapper").children("ol").children("li").children("#" + refId);
 
         // Allows for link behavior
         $(this)[0].setAttribute("href", "javascript: void(0);");
+        listRef[0].setAttribute("href", "javascript: void(0);");
 
         /*  The rollover event
             Allows for additional classes (e.g. bottom, right, etc.) */
@@ -28,6 +33,11 @@ if ($("#features").length > 0) {
             currentFeature.children(".token").children(".label")[0].setAttribute("class", labelClass);
             currentFeature.children(".description")[0].setAttribute("class", descriptionClass);
         });
-        // TODO: Responsive!
+
+        // The rollover event for the ordered list
+        listRef.mouseenter(function () {
+            var refId = $(this)[0].getAttribute("id");
+            $("#overlays").children("#" + refId).mouseenter();
+        });
     });
 }
