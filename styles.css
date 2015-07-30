@@ -7,6 +7,10 @@ body {
     width: 100%;
 }
 
+#featuresWrapper ol {
+    clear: both;
+}
+
 #features {
     position: relative;
     max-width: 738px;
@@ -23,6 +27,7 @@ body {
 }
 
 #features-images {
+    position: relative;
     display: block;
     max-width: 738px;
     width: 100%;
@@ -101,11 +106,6 @@ body {
     top: 48.58%;
 }
 
-.description.visible,
-.label.visible {
-    display: block !important;
-}
-
 #features .description.left {
     right: auto !important;
     left: 0 !important;
@@ -141,7 +141,11 @@ body {
     padding: 15px;
     left: 0;
     top: 0;
-    width: 500px;
+    width: 90%;
+    max-width: 500px;
+    height: auto;
+    max-height: 85%;
+    overflow: scroll;
     display: none;
     z-index: 1;
     -webkit-box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.5);
@@ -154,12 +158,140 @@ body {
     white-space: nowrap;
     background-color: #003768;
     padding: 5px;
-    height: 16px;
-    line-height: 16px;
+    line-height: 1em;
     left: 0;
     top: -35px;
     display: none;
     -webkit-box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.5);
     -moz-box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.5);
     box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.5);
+}
+
+.description.visible,
+.label.visible {
+    display: block !important;
+}
+
+#mobileDescription {
+    display: none;
+}
+
+/* m-break */
+@media screen and (max-width: 852px) {
+    #features.mobile {
+        position: relative;
+        overflow: hidden;
+        width: 100%;
+        height: 500px;
+    }
+
+    #features.mobile #features-images {
+        position: absolute;
+        max-width: none;
+        max-height: none;
+        width: auto;
+        margin-left: 50%;
+        margin-top: 125px;
+    }
+
+    #features.mobile #features-images.ref1 {
+        left: -95px;
+        top: -435px;
+    }
+
+    #features.mobile #features-images.ref2 {
+        left: -180px;
+        top: -314px;
+    }
+
+    #features.mobile #features-images.ref3 {
+        left: -272px;
+        top: -436px;
+    }
+
+    #features.mobile #features-images.ref4 {
+        left: -389px;
+        top: -352px;
+    }
+
+    #features.mobile #features-images.ref5 {
+        left: -477px;
+        top: -175px;
+    }
+
+    #features.mobile #features-images.ref6 {
+        left: -691px;
+        top: -254px;
+    }
+
+    #features.mobile #features-images.ref7 {
+        left: -233px;
+        top: -257px;
+    }
+
+    #features.mobile #features-images img {
+        width: 738px;
+        height: auto;
+    }
+
+    #features.mobile .description.visible {
+        display: none !important;
+    }
+
+    #features.mobile #ref1 .token {
+        left: 95px;
+        top: 435px;
+    }
+
+    #features.mobile #ref2 .token {
+        left: 180px;
+        top: 314px;
+    }
+
+    #features.mobile #ref2 .token .label {
+        top: auto !important;
+        bottom: -35px;
+    }
+
+    #features.mobile #ref3 .token {
+        left: 272px;
+        top: 436px;
+    }
+
+    #features.mobile #ref4 .token {
+        left: 389px;
+        top: 352px;
+    }
+
+    #features.mobile #ref5 .token {
+        left: 477px;
+        top: 175px;
+    }
+
+    #features.mobile #ref6 .token {
+        left: 691px;
+        top: 254px;
+    }
+
+    #features.mobile #ref6 .token .label {
+        left: auto !important;
+        right: 0;
+    }
+
+    #features.mobile #ref7 .token {
+        left: 233px;
+        top: 257px;
+    }
+
+    #features.mobile #mobileDescription {
+        display: block;
+        position: absolute;
+        top: 250px;
+        z-index: 1;
+        background: #003768;
+        color: #FFFFFF;
+        height: 250px;
+        overflow: scroll;
+        padding: 15px;
+    }
 }

@@ -15,6 +15,8 @@ if ($("#features").length > 0) {
         /*  The rollover event
             Allows for additional classes (e.g. bottom, right, etc.) */
         $(this).mouseenter(function () {
+            $("#features")[0].setAttribute("class", "mobile");
+            $("#features-images")[0].setAttribute("class", $(this)[0].getAttribute("id"));
             var labelClass;
             var descriptionClass;
             if (currentFeature !== null) {
@@ -26,6 +28,7 @@ if ($("#features").length > 0) {
                 currentFeature.children(".description")[0].setAttribute("class", descriptionClass);
             }
             currentFeature = $(this);
+            $("#mobileDescription")[0].innerHTML = currentFeature.children(".description")[0].innerHTML;
             labelClass = currentFeature.children(".token").children(".label")[0].getAttribute("class");
             descriptionClass = currentFeature.children(".description")[0].getAttribute("class");
             labelClass += " visible";
