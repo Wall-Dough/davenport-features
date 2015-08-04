@@ -61,49 +61,14 @@ body {
     box-shadow: 3px 3px 3px 0px rgba(0,0,0,0.5);
 }
 
-#ref1 .token {
-    left: 12.87%;
-    top: 82.23%;
-}
-
-#ref2 .token {
-    left: 24.39%;
-    top: 59.36%;
-}
-
 #ref2 .token .label {
     top: auto !important;
     bottom: -35px;
 }
 
-#ref3 .token {
-    left: 36.86%;
-    top: 82.42%;
-}
-
-#ref4 .token {
-    left: 52.71%;
-    top: 66.54%;
-}
-
-#ref5 .token {
-    left: 64.63%;
-    top: 33.08%;
-}
-
-#ref6 .token {
-    left: 93.63%;
-    top: 48.02%;
-}
-
 #ref6 .token .label {
     left: auto !important;
     right: 0;
-}
-
-#ref7 .token {
-    left: 31.57%;
-    top: 48.58%;
 }
 
 #features .description.left {
@@ -176,6 +141,10 @@ body {
     display: none;
 }
 
+#overlays .token.visible {
+    display: block;
+}
+
 /* m-break */
 @media screen and (max-width: 852px) {
     #features.mobile {
@@ -192,6 +161,8 @@ body {
         width: auto;
         margin-left: 50%;
         margin-top: 125px;
+        transition: left 1s, top 1s;
+        -webkit-transition: left 1s, top 1s;
     }
 
     #features.mobile #features-images.ref1 {
