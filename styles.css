@@ -146,7 +146,7 @@ body {
 }
 
 /* m-break */
-@media handheld, screen and (max-width: 852px) {
+@media only screen and (max-width: 852px) {
     #features.mobile {
         position: relative;
         overflow: hidden;
