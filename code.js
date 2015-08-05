@@ -3,7 +3,7 @@ var currentFeature = null; // The currently visible feature (i.e. array correspo
 // Breakpoint for mobile styles
 var mobileWidth = 852;
 
-// Initializes the mobile hotspot styles to be added later
+// Initializes the mobile hotspot and tooltip styles to be added later
 var styles = "";
 var mobileStyles = "@media only screen and (max-width: " + mobileWidth.toString() + "px) {";
 
@@ -65,7 +65,7 @@ if ($("#featuresWrapper").length > 0) {
     var descriptionsBox = document.createElement("section");
     descriptionsBox.setAttribute("id", "descriptions");
     descriptionsBox.setAttribute("style", "display: none;");
-    $("#featuresWrapper").append(descriptionsBox);
+    $("#featuresWrapper").prepend(descriptionsBox);
 
     $("#overlays").children("a").each(function () {
         "use strict";
@@ -96,21 +96,30 @@ if ($("#featuresWrapper").length > 0) {
         $(this).attr("class", "img" + hotspotArray[refId].img.toString());
 
         // Adds the hotspot to the hotspot styles
-        styles += "#features #" + refId + " .hotspot {left:" + (hotspotArray[refId].left / images[hotspotArray[refId].img].width * 100).toString()
+        var position = "{left:" + (hotspotArray[refId].left / images[hotspotArray[refId].img].width * 100).toString()
             + "%; top:" + (hotspotArray[refId].top / images[hotspotArray[refId].img].height * 100).toString() + "%;}";
+        styles += "#features #" + refId + " .hotspot" + position;
 
         // Adds the hotspot to the mobile styles
-        mobileStyles += "#features.mobile #features-images." + refId + " {left:-" + hotspotArray[refId].left.toString() + "px;top:-" + hotspotArray[refId].top.toString() + "px;}" +
-            "#features.mobile #" + refId + " .hotspot {left:" + hotspotArray[refId].left.toString() + "px; top:" + hotspotArray[refId].top.toString() + "px;}";
+        mobileStyles += "#featuresWrapper.mobile #features-images." + refId + "{left:-" + hotspotArray[refId].left.toString() + "px;top:-" + hotspotArray[refId].top.toString() + "px;}" +
+            "#featuresWrapper.mobile #" + refId + " .hotspot {left:" + hotspotArray[refId].left.toString() + "px; top:" + hotspotArray[refId].top.toString() + "px;}";
 
         /*  The rollover event
             Allows for additional classes (e.g. bottom, right, etc.) */
         $(this).mouseenter(function () {
-            $("#features")[0].setAttribute("class", "mobile");
+            $("#featuresWrapper").attr("class", "mobile");
             $("#features-images").attr("class", $(this).attr("id"));
             hideTooltip(currentFeature);
             currentFeature = $(this);
-            $("#descriptions #" + $(this).attr("id")).attr("class", "visible");
+            var description = $("#descriptions #" + $(this).attr("id"));
+            description[0].style.top = $(this).children(".hotspot").css("top");
+            description[0].style.left = $(this).children(".hotspot").css("left");
+            // If in mobile view, move tooltip to middle of window
+            if (($(window).width() <= mobileWidth) && ($("#featuresWrapper").attr("class") == "mobile")) {
+                description[0].style.left = "";
+                description[0].style.top = parseInt($("#featuresWrapper").css("height")) / 2;
+            }
+            description.attr("class", "visible");
         });
 
         $(this).mouseleave(function () {
@@ -136,6 +145,6 @@ if ($("#featuresWrapper").length > 0) {
     document.head.appendChild(mobileStyleElement);
 
     $("#expand").click(function () {
-        $("#features").removeAttr("class");
+        $("#featuresWrapper").removeAttr("class");
     });
 }
