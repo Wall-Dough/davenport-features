@@ -1,6 +1,12 @@
 var currentFeature = null; // The currently visible feature (i.e. array corresponding to jQuery object)
 
-var images = $("#features-images img");
+var images = {
+    0 : {
+        id: "img0",
+        width: 738,
+        height: 529
+    }
+};
 
 var tokenArray = {
     ref1 : {
@@ -38,19 +44,26 @@ var tokenArray = {
         left : 233,
         top  : 257
     }
+};
+
+function hideTooltip(feature) {
+    if (feature === null) {
+        return;
+    }
+    var descriptionClass = currentFeature.children(".description")[0].getAttribute("class");
+    descriptionClass = descriptionClass.replace(" visible", "");
+    currentFeature.children(".description")[0].setAttribute("class", descriptionClass);
+    currentFeature = null;
 }
 
 if ($("#features").length > 0) {
     $("#overlays").children("a").each(function () {
         "use strict";
 
-        // Get ref from the ordered list
         var refId = $(this)[0].getAttribute("id");
-        var listRef = $("#featuresWrapper").children("ol").children("li").children("#" + refId);
 
         // Allows for link behavior
         $(this)[0].setAttribute("href", "javascript: void(0);");
-        listRef[0].setAttribute("href", "javascript: void(0);");
 
         var token = $(this).children(".token")[0];
         token.style.left = (tokenArray[refId].left / images[tokenArray[refId].img].width * 100).toString() + "%";
@@ -58,37 +71,20 @@ if ($("#features").length > 0) {
 
         $(this)[0].setAttribute("class", "img" + tokenArray[refId].img.toString());
 
-
         /*  The rollover event
             Allows for additional classes (e.g. bottom, right, etc.) */
         $(this).mouseenter(function () {
             $("#features")[0].setAttribute("class", "mobile");
             $("#features-images")[0].setAttribute("class", $(this)[0].getAttribute("id"));
-            var labelClass;
-            var descriptionClass;
-            if (currentFeature !== null) {
-                labelClass = currentFeature.children(".token").children(".label")[0].getAttribute("class");
-                descriptionClass = currentFeature.children(".description")[0].getAttribute("class");
-                labelClass = labelClass.replace(" visible", "");
-                descriptionClass = descriptionClass.replace(" visible", "");
-                currentFeature.children(".token").children(".label")[0].setAttribute("class", labelClass);
-                currentFeature.children(".description")[0].setAttribute("class", descriptionClass);
-
-            }
+            hideTooltip(currentFeature);
             currentFeature = $(this);
-            $("#mobileDescription")[0].innerHTML = currentFeature.children(".description")[0].innerHTML;
-            labelClass = currentFeature.children(".token").children(".label")[0].getAttribute("class");
-            descriptionClass = currentFeature.children(".description")[0].getAttribute("class");
-            labelClass += " visible";
+            var descriptionClass = currentFeature.children(".description")[0].getAttribute("class");
             descriptionClass += " visible";
-            currentFeature.children(".token").children(".label")[0].setAttribute("class", labelClass);
             currentFeature.children(".description")[0].setAttribute("class", descriptionClass);
         });
 
-        // The rollover event for the ordered list
-        listRef.mouseenter(function () {
-            var refId = $(this)[0].getAttribute("id");
-            $("#overlays").children("#" + refId).mouseenter();
+        $(this).mouseleave(function () {
+            hideTooltip(currentFeature);
         });
     });
 }
