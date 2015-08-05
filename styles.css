@@ -45,7 +45,7 @@ body {
     margin: 0;
 }
 
-#features .token {
+#features .hotspot {
     position: absolute;
     left: 0;
     top: 0;
@@ -86,7 +86,7 @@ body {
     display: none;
 }
 
-#overlays .token.visible {
+#overlays .hotspot.visible {
     display: block;
 }
 
@@ -154,47 +154,37 @@ body {
         display: none !important;
     }
 
-    #features.mobile #ref1 .token {
+    #features.mobile #ref1 .hotspot {
         left: 95px;
         top: 435px;
     }
 
-    #features.mobile #ref2 .token {
+    #features.mobile #ref2 .hotspot {
         left: 180px;
         top: 314px;
     }
 
-    #features.mobile #ref2 .token .label {
-        top: auto !important;
-        bottom: -35px;
-    }
-
-    #features.mobile #ref3 .token {
+    #features.mobile #ref3 .hotspot {
         left: 272px;
         top: 436px;
     }
 
-    #features.mobile #ref4 .token {
+    #features.mobile #ref4 .hotspot {
         left: 389px;
         top: 352px;
     }
 
-    #features.mobile #ref5 .token {
+    #features.mobile #ref5 .hotspot {
         left: 477px;
         top: 175px;
     }
 
-    #features.mobile #ref6 .token {
+    #features.mobile #ref6 .hotspot {
         left: 691px;
         top: 254px;
     }
 
-    #features.mobile #ref6 .token .label {
-        left: auto !important;
-        right: 0;
-    }
-
-    #features.mobile #ref7 .token {
+    #features.mobile #ref7 .hotspot {
         left: 233px;
         top: 257px;
     }

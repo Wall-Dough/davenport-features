@@ -8,7 +8,7 @@ var images = {
     }
 };
 
-var tokenArray = {
+var hotspotArray = {
     ref1 : {
         img  : 0,
         left : 95,
@@ -65,11 +65,12 @@ if ($("#features").length > 0) {
         // Allows for link behavior
         $(this)[0].setAttribute("href", "javascript: void(0);");
 
-        var token = $(this).children(".token")[0];
-        token.style.left = (tokenArray[refId].left / images[tokenArray[refId].img].width * 100).toString() + "%";
-        token.style.top = (tokenArray[refId].top / images[tokenArray[refId].img].height * 100).toString() + "%";
+        // Set position of hotspot
+        var hotspot = $(this).children(".hotspot")[0];
+        hotspot.style.left = (hotspotArray[refId].left / images[hotspotArray[refId].img].width * 100).toString() + "%";
+        hotspot.style.top = (hotspotArray[refId].top / images[hotspotArray[refId].img].height * 100).toString() + "%";
 
-        $(this)[0].setAttribute("class", "img" + tokenArray[refId].img.toString());
+        $(this)[0].setAttribute("class", "img" + hotspotArray[refId].img.toString());
 
         /*  The rollover event
             Allows for additional classes (e.g. bottom, right, etc.) */
