@@ -108,8 +108,8 @@ body {
 #features #expand {
     display: none;
     position: absolute;
-    bottom: 0;
-    left: 0;
+    top: 0;
+    right: 0;
     background-image: url("expand.png");
     width: 32px;
     height: 32px;

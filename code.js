@@ -2,6 +2,7 @@ var currentFeature = null; // The currently visible feature (i.e. array correspo
 
 // Breakpoint for mobile styles
 var mobileWidth = 852;
+var mouseOver = false;
 
 // Initializes the mobile hotspot and tooltip styles to be added later
 var styles = "";
@@ -58,6 +59,55 @@ function hideTooltip(feature) {
         return;
     }
     $("#descriptions #" + feature.attr("id")).removeAttr("class");
+    currentFeature = null;
+}
+
+function is_mobile() {
+    return ($(window).width() <= mobileWidth) && ($("#featuresWrapper").attr("class") == "mobile");
+}
+
+function is_small() {
+    return $(window).width() <= mobileWidth;
+}
+
+function showDescription(hotspot) {
+    $("#featuresWrapper").attr("class", "mobile");
+    $("#features-images").attr("class", hotspot.attr("id"));
+    hideTooltip(currentFeature);
+    currentFeature = hotspot;
+    var descriptionQuery = "#descriptions #" + hotspot.attr("id");
+    var description = $(descriptionQuery);
+    description[0].style.top = hotspot.children(".hotspot").css("top");
+    description[0].style.left = hotspot.children(".hotspot").css("left");
+    description[0].style.width = "";
+    // If in mobile view, move tooltip to middle of window
+    if (is_mobile()) {
+        description[0].style.left = "";
+        description[0].style.top = parseInt($("#featuresWrapper").css("height")) / 2;
+        description[0].style.width = parseInt($("#featuresWrapper").css("width")) - (parseInt(description.css("padding")) * 2);
+    }
+
+    description.attr("class", "visible");
+}
+
+function hotspot_mouseover(hotspot) {
+    if (is_small()) {
+        return;
+    }
+    showDescription(hotspot);
+}
+
+function hotspot_mouseout() {
+    if (is_small()) {
+        return;
+    }
+    hideTooltip(currentFeature);
+}
+
+function hotspot_mousedown(hotspot) {
+    if (is_small()) {
+        showDescription(hotspot);
+    }
 }
 
 if ($("#featuresWrapper").length > 0) {
@@ -89,9 +139,9 @@ if ($("#featuresWrapper").length > 0) {
 
 
         // Add hotspot
-        var hotspot = document.createElement("span");
-        hotspot.setAttribute("class", "hotspot");
-        $(this).append(hotspot);
+        var newHotspot = document.createElement("span");
+        newHotspot.setAttribute("class", "hotspot");
+        $(this).append(newHotspot);
 
         $(this).attr("class", "img" + hotspotArray[refId].img.toString());
 
@@ -104,36 +154,37 @@ if ($("#featuresWrapper").length > 0) {
         mobileStyles += "#featuresWrapper.mobile #features-images." + refId + "{left:-" + hotspotArray[refId].left.toString() + "px;top:-" + hotspotArray[refId].top.toString() + "px;}" +
             "#featuresWrapper.mobile #" + refId + " .hotspot {left:" + hotspotArray[refId].left.toString() + "px; top:" + hotspotArray[refId].top.toString() + "px;}";
 
-        /*  The rollover event
-            Allows for additional classes (e.g. bottom, right, etc.) */
-        $(this).mouseenter(function () {
-            $("#featuresWrapper").attr("class", "mobile");
-            $("#features-images").attr("class", $(this).attr("id"));
-            hideTooltip(currentFeature);
-            currentFeature = $(this);
-            var description = $("#descriptions #" + $(this).attr("id"));
-            description[0].style.top = $(this).children(".hotspot").css("top");
-            description[0].style.left = $(this).children(".hotspot").css("left");
-            // If in mobile view, move tooltip to middle of window
-            if (($(window).width() <= mobileWidth) && ($("#featuresWrapper").attr("class") == "mobile")) {
-                description[0].style.left = "";
-                description[0].style.top = parseInt($("#featuresWrapper").css("height")) / 2;
-            }
-            description.attr("class", "visible");
+        /*  The rollover event */
+        $(this)[0].addEventListener("mouseover", function (e) {
+            hotspot_mouseover($(this));
         });
 
-        $(this).mouseleave(function () {
-            hideTooltip(currentFeature);
+        $(this)[0].addEventListener("mousedown", function (e) {
+            hotspot_mousedown($(this));
+        });
+
+        $(this)[0].addEventListener("mouseout", function (e) {
+            hotspot_mouseout();
         });
 
         // Adds mouseenter and mouseleave events for the descriptions
-        $("#descriptions #" + refId).mouseenter(function() {
-            $("#overlays #" + $(this).attr("id")).mouseenter();
+        $("#descriptions #" + refId)[0].addEventListener("mouseover", function (e) {
+            hotspot_mouseover($("#overlays #" + $(this).attr("id")));
         });
 
-        $("#descriptions #" + refId).mouseleave(function() {
-            $("#overlays #" + $(this).attr("id")).mouseleave();
+        $("#descriptions #" + refId)[0].addEventListener("mousedown", function (e) {
+            hotspot_mousedown($("#overlays #" + $(this).attr("id")));
         });
+
+        $("#descriptions #" + refId)[0].addEventListener("mouseout", function (e) {
+            hotspot_mouseout();
+        });
+    });
+
+    $("#features")[0].addEventListener("mouseover", function (e) {
+        if (is_small()) {
+            hideTooltip(currentFeature);
+        }
     });
 
     descriptionsBox.removeAttribute("style");
