@@ -96,6 +96,11 @@ function showDescription(hotspot) {
         description.children(".arrow")[0].style.left = "";
         description.children(".arrow")[0].style.left = parseInt(description.children(".arrow").css("left")) + offset.left - 8 - parseInt(description.children(".arrow").css("margin-left"));
     }
+    if (offset.right < 8) {
+        description[0].style.right = parseInt(description[0].style.right) - offset.right + 8;
+        description.children(".arrow")[0].style.right = "";
+        description.children(".arrow")[0].style.right = parseInt(description.children(".arrow").css("right")) + offset.right - 8 - parseInt(description.children(".arrow").css("margin-right"));
+    }
 }
 
 function hotspot_mouseover(hotspot) {
