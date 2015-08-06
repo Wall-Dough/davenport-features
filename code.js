@@ -141,6 +141,9 @@ if ($("#featuresWrapper").length > 0) {
             hideTooltip(currentFeature);
         });
         $(span).prepend(closeButton);
+        var arrow = document.createElement("div");
+        arrow.setAttribute("class", "arrow");
+        $(span).prepend(arrow);
         $("#descriptions").append(span);
 
 

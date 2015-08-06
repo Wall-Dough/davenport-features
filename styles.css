@@ -2,6 +2,18 @@ body {
     font-family: sans-serif;
 }
 
+.arrow {
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 10px solid #003768;
+    position: absolute;
+    top: -10;
+    left: 50%;
+    margin-left: -12px;
+}
+
 #featuresWrapper {
     position: relative;
     width: 100%;
@@ -146,6 +158,10 @@ body {
         margin-top: 150px;
         transition: left 1s, top 1s;
         -webkit-transition: left 1s, top 1s;
+    }
+
+    .arrow {
+        margin: 0;
     }
 
     #featuresWrapper.mobile #img0 {
