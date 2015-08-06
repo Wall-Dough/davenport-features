@@ -82,12 +82,20 @@ function showDescription(hotspot) {
     description[0].style.width = "";
     // If in mobile view, move tooltip to middle of window
     if (is_mobile()) {
-        description[0].style.left = "";
+        description[0].style.left = 0;
         description[0].style.top = parseInt($("#featuresWrapper").css("height")) / 2;
         description[0].style.width = parseInt($("#featuresWrapper").css("width")) - (parseInt(description.css("padding")) * 2);
     }
 
     description.attr("class", "visible");
+
+    // If the tooltip exceeds the document bounds, move it into the document
+    var offset = description.offset();
+    if (offset.left < 8) {
+        description[0].style.left = parseInt(description[0].style.left) - offset.left + 8;
+        description.children(".arrow")[0].style.left = "";
+        description.children(".arrow")[0].style.left = parseInt(description.children(".arrow").css("left")) + offset.left - 8 - parseInt(description.children(".arrow").css("margin-left"));
+    }
 }
 
 function hotspot_mouseover(hotspot) {
