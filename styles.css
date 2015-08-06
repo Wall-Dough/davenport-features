@@ -17,6 +17,7 @@ body {
 #features {
     position: relative;
     max-width: 738px;
+    z-index: 0;
 }
 
 #overlays {
@@ -61,7 +62,6 @@ body {
     height: 15px;
     border-radius: 12.5px;
     color: #FFFFFF;
-    z-index: 1;
     -webkit-box-shadow: 3px 3px 3px 0px rgba(0,0,0,0.5), inset 0px 0px 5px 2px rgba(255,255,255,0.25);
     -moz-box-shadow: 3px 3px 3px 0px rgba(0,0,0,0.5), inset 0px 0px 5px 2px rgba(255,255,255,0.25);
     box-shadow: 3px 3px 3px 0px rgba(0,0,0,0.5), inset 0px 0px 5px 2px rgba(255,255,255,0.25);
@@ -76,7 +76,7 @@ body {
     z-index: 1;
 }
 
-#featuresWrapper #descriptions span {
+#featuresWrapper #descriptions > span {
     position: relative;
     background-color: #003768;
     color: #FFFFFF;
@@ -93,7 +93,7 @@ body {
     box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.5);
 }
 
-#featuresWrapper #descriptions span.visible {
+#featuresWrapper #descriptions > span.visible {
     display: block !important;
 }
 
@@ -114,6 +114,18 @@ body {
     width: 32px;
     height: 32px;
     margin: 5px;
+}
+
+#descriptions .close {
+    opacity: 0.33;
+    display: none;
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-image: url("close.png");
+    width: 16px;
+    height: 16px;
+    margin: 3px;
 }
 
 /* m-break */
@@ -145,7 +157,11 @@ body {
         display: block;
     }
 
-    #featuresWrapper.mobile #descriptions span {
+    #featuresWrapper.mobile #descriptions > span.visible .close {
+        display: block;
+    }
+
+    #featuresWrapper.mobile #descriptions > span {
         left: 0;
         right: 0;
         margin-left: 0;

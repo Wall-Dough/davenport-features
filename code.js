@@ -135,6 +135,12 @@ if ($("#featuresWrapper").length > 0) {
         var span = document.createElement("span");
         span.setAttribute("id", refId);
         span.innerHTML = description;
+        var closeButton = document.createElement("span");
+        closeButton.setAttribute("class", "close");
+        $(closeButton).click(function () {
+            hideTooltip(currentFeature);
+        });
+        $(span).prepend(closeButton);
         $("#descriptions").append(span);
 
 
